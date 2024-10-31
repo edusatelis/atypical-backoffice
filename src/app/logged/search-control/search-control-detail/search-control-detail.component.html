@@ -1,0 +1,58 @@
+<section class="container-fluid p-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h3 class="rawline-bold fs-26 mb-0">Pesquisa de Satisfação</h3>
+        <mat-icon class="cursor-pointer" (click)="close()">close</mat-icon>
+    </div>
+    <form  class="mt-4">
+        <div class="d-flex flex-column">
+            <div class="d-flex align-items-center">
+                <div class="me-2">
+                  <img src="{{response?.user?.profilePicture}}" alt="" class="rounded-circle" style="width: 57px; height: 57px;">
+                </div>
+                <div class="row w-100 mt-4 mb-2">
+                    <div class="col-md-8 ml-4">
+                        <p class="fw-bold mb-0" style="font-size: 10px; color: #6c757d;">{{response?.user?.type}}</p>
+                        <p class="fw-bold mb-0" style="font-size: 16.8px; color: #007F7B;">{{response?.user?.name}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex w-100 mt-4" style="width: 389px;">
+                <div class="col-md-4">
+                    <div class="card justify-content-center align-items-center">
+                        <div class="card-body">
+                            <p class="fw-bold text-center" style="font-size: 14px; color: #ADADAD;">Programa</p>
+                            <p class="fw-bold text-center" style="font-size: 32px; color: #0B0B18;">{{response?.programGrade}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card justify-content-center align-items-center" >
+                        <div class="card-body">
+                            <p class="fw-bold text-center" style="font-size: 14px; color: #ADADAD;">Plataforma</p>
+                            <p class="fw-bold text-center" style="font-size: 32px; color: #0B0B18;">{{response?.plataformGrade}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card justify-content-center align-items-center" >
+                        <div class="card-body">
+                            <p class="fw-bold text-center" style="font-size: 14px; color: #ADADAD;">Interação</p>
+                            <p class="fw-bold text-center" style="font-size: 32px; color: #0B0B18;">{{response?.professionalGrade}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row w-100 mt-4 p-2" style="height: 150px; width: 389px;">
+                <textarea>{{response?.comments}}</textarea>
+            </div>
+
+            <div class="d-flex align-items-center mt-4">
+                <button mat-stroked-button class="w-100 fs-16 rawline-bold color-primary me-3"
+                    (click)="close()">Fechar</button>
+            </div>
+        </div>
+
+
+    </form>
+</section>

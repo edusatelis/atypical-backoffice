@@ -1,0 +1,63 @@
+<section class="container-fluid">
+    <button class="btn p-0 mt-4 text-secondary-custom" (click)="back()"><mat-icon>arrow_back</mat-icon></button>
+    <div class="content-header-page">
+        <h4 class="text-secondary-custom fw-bold my-4 axiforma-semibold fs-26">Perfil do Agente Promotor</h4>
+    </div>
+
+    <mat-card appearance="outlined" class="mt-4">
+        <mat-card-content>
+            <div class="d-flex flex-wrap">
+                <img src="../../../../assets/imgs/user-profile-default.png" alt="" class="profile-picture-content">
+                <div class="d-flex flex-column ms-4">
+                    <span class="text-muted-custom fs-10 rawline-medium">Nome</span>
+                    <p class="color-primary fs-16 rawline-bold">{{agent?.userAdmin?.name}}</p>
+                    <span class="text-muted-custom fs-10 rawline-medium">Nome Empresa</span>
+                    <p class="color-gray fs-16 rawline-bold">{{agent?.name}}</p>
+                </div>
+                <div class="d-flex flex-column ms-4">
+                    <span class="text-muted-custom fs-10 rawline-medium">CPF</span>
+                    <p class="color-gray fs-16 rawline-bold">{{ getCpf(agent?.userAdmin?.cpf)}}</p>
+                    <span class="text-muted-custom fs-10 rawline-medium">CNPJ</span>
+                    <p class="color-gray fs-16 rawline-bold">{{getCnpj(agent?.cnpj)}}</p>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <hr class="color-gray my-4">
+
+    <div class="row">
+        <div class="col-12">
+            <h4 class="text-secondary-custom fw-bold rawline-bold fs-21">Lista de demandas</h4>
+        </div>
+        <div class="col-12 mt-4">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="rawline-bold fs-14">Beneficiário</th>
+                            <th scope="col" class="rawline-bold fs-14">Fase</th>
+                            <th scope="col" class="rawline-bold fs-14">Status</th>
+                            <th scope="col" class="rawline-bold fs-14">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of demand | paginate: { itemsPerPage: 10, currentPage: pageDemands }">
+                            <td class="rawline-medium fs-14">{{item.beneficiary?.name}}</td>
+                            <td class="rawline-medium fs-14">{{getPhase(item.status)}}</td>
+                            <td class="rawline-medium fs-14">{{getStatus(item.status)}}</td>
+                            <td >
+                                <mat-icon class="color-gray cursor-pointer" (click)="openDemandDetails(item)">find_in_page</mat-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <pagination-controls (pageChange)="pageDemands = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+
+    <hr class="color-gray my-4">
+</section>

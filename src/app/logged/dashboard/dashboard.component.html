@@ -1,0 +1,197 @@
+<section class="container-fluid">
+    <div class="content-header-page">
+        <h4 class="text-secondary-custom fw-bold my-4 axiforma-semibold fs-26">Dashboard</h4>
+    </div>
+
+            <div [formGroup]="formDados" class="d-flex justify-content-between align-items-center mt-4">
+                <h3 class="text-secondary-custom fw-bold mb-0 fs-21 axiforma-semibold">Dados dos usuários</h3>
+                <mat-form-field appearance="outline">
+                    <mat-label>Filtro</mat-label>
+                    <mat-select  formControlName="monthDados" (selectionChange)="loadingCount()" name="filter" class="select-custom">
+                        <mat-option value="1">1 mês</mat-option>
+                        <mat-option value="2">2 meses</mat-option>
+                        <mat-option value="3">3 meses</mat-option>
+                        <mat-option value="4">4 meses</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row justify-content-center gap-3 mt-4">
+                <div class="card col-xl-2 col-lg-3 col-md-4 col-sm-6 mt-3 mr-2">
+                    <div class="d-flex flex-column card-body">
+                        <p class="text-muted-custom rawline-medium fs-12 rawline-medium fs-12">Beneficiários</p>
+                        <div class="d-flex align-items-center">
+                            <h4 class="mb-0 fs-26 rawline-bold">{{beneficiary}}</h4>
+                            <!-- <mat-icon class="color-success ms-2">trending_up</mat-icon> -->
+                        </div>
+                    </div>
+                    <img src="../../../assets/svg/people.svg" class="people" width="62px" height="62px" alt="">
+                </div>
+                <!-- <div class="card col-xl-2 col-lg-3 col-md-4 col-sm-6 mt-3 ml-4">
+                    <div class="d-flex flex-column card-body">
+                        <p class="text-muted-custom rawline-medium fs-12">Agentes Promotores</p>
+                        <div class="d-flex align-items-center">
+                            <h4 class="mb-0 fs-26 rawline-bold">{{companies}}</h4>
+                        </div>
+                    </div>
+                    <img src="../../../assets/svg/construction.svg" class="construction" width="62px" height="62px" alt="">
+
+                </div> -->
+                <div class="card col-xl-2 col-lg-3 col-md-4 col-sm-6 mt-3">
+                    <div class="d-flex flex-column card-body">
+                        <p class="text-muted-custom rawline-medium fs-12">Obras</p>
+                        <div class="d-flex align-items-center">
+                            <h4 class="mb-0 fs-26 rawline-bold">{{construction}}</h4>
+                            <!-- <mat-icon class="color-success ms-2">trending_up</mat-icon> -->
+                        </div>
+                    </div>
+                    <img src="../../../assets/svg/construction.svg" class="construction" width="62px" height="62px" alt="">
+
+                </div>
+                <div class="card col-xl-2 col-lg-3 col-md-4 col-sm-6 mt-3">
+                    <div class="d-flex flex-column card-body">
+                        <p class="text-muted-custom rawline-medium fs-12">Demandas</p>
+                        <div class="d-flex align-items-center">
+                            <h4 class="mb-0 fs-26 rawline-bold">{{demands}}</h4>
+                            <!-- <mat-icon class="color-danger ms-2">trending_down</mat-icon> -->
+                        </div>
+                    </div>
+                    <img src="../../../assets/svg/demand.svg" class="demand" width="62px" height="62px" alt="">
+
+                </div>
+                <div class="card col-xl-2 col-lg-3 col-md-4 col-sm-6 mt-3">
+                    <div class="d-flex flex-column card-body">
+                        <p class="text-muted-custom rawline-medium fs-12">Solicitações de ajuda</p>
+                        <div class="d-flex align-items-center">
+                            <h4 class="mb-0 fs-26 rawline-bold">{{help}}</h4>
+                            <!-- <mat-icon class="color-success ms-2">trending_up</mat-icon> -->
+                        </div>
+                    </div>
+                    <img src="../../../assets/svg/help.svg" class="help" width="62px" height="62px" alt="">
+
+                </div>
+                <div class="card col-xl-2 col-lg-3 col-md-4 col-sm-6 mt-3">
+                    <div class="d-flex flex-column card-body">
+                        <p class="text-muted-custom rawline-medium fs-12">Inconsistências</p>
+                        <div class="d-flex align-items-center">
+                            <h4 class="mb-0 fs-26 rawline-bold">{{inconsistency}}</h4>
+                            <!-- <mat-icon class="color-danger ms-2">trending_down</mat-icon> -->
+                        </div>
+                    </div>
+                    <img src="../../../assets/svg/inconsistency.svg" class="inconsistency" width="62px" height="62px" alt="">
+
+                </div>
+            </div>
+
+    <div class="row mt-4">
+
+            <mat-card appearance="outlined">
+                <mat-card-content>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3 class="text-gray-dark fw-bold rawline-bold fs-21 mb-0">Status de Obra</h3>
+                    </div>
+                    <div style="display: block;">
+                        <canvas baseChart
+                            [data]="barChartData"
+                            [options]="barChartOptions"
+                            [type]="barChartType"
+                            [legend]="true"
+                            >
+                        </canvas>
+                      </div>
+                </mat-card-content>
+            </mat-card>
+
+
+        <div class="col-12">
+            <mat-card appearance="outlined" class="mt-4 mb-2">
+                <mat-card-content>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3 class="text-gray-dark fw-bold rawline-bold fs-21 mb-0">Pesquisa de satisfação</h3>
+                        <mat-form-field [formGroup]="form" appearance="outline" style="margin-bottom: 0em">
+                            <mat-label>Filtro</mat-label>
+                            <mat-select formControlName="month" (selectionChange)="searchList()" name="filter" class="select-custom">
+                                <mat-option value="1">1 mês</mat-option>
+                                <mat-option value="2">2 meses</mat-option>
+                                <mat-option value="3">3 meses</mat-option>
+                                <mat-option value="4">4 meses</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <p class="rawline-medium fs-16 text-secondary-custom">Beneficiários</p>
+                            <div class="col-12 row">
+                                <div class="col-md-4 col-sm-6 mt-3">
+                                    <div class="d-flex flex-column">
+                                        <p class="text-muted-custom rawline-medium fs-14">Programa</p>
+                                        <div class="d-flex align-items-center">
+                                            <h4 class="mb-0 fs-32 rawline-bold">{{listBenefiario.program}}</h4>
+                                            <mat-icon  *ngIf="listBenefiario.program >= 5" class="color-success ms-2">arrow_upward</mat-icon>
+                                            <mat-icon  *ngIf="listBenefiario.program < 5" class="color-danger ms-2">south</mat-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 mt-3">
+                                    <div class="d-flex flex-column">
+                                        <p class="text-muted-custom rawline-medium fs-14">Plataforma</p>
+                                        <div class="d-flex align-items-center">
+                                            <h4 class="mb-0 fs-32 rawline-bold">{{listBenefiario.platform}}</h4>
+                                            <mat-icon  *ngIf="listBenefiario.platform >= 5" class="color-success ms-2">arrow_upward</mat-icon>
+                                            <mat-icon  *ngIf="listBenefiario.platform < 5" class="color-danger ms-2">south</mat-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 mt-3">
+                                    <div class="d-flex flex-column">
+                                        <p class="text-muted-custom rawline-medium fs-14">Interação</p>
+                                        <div class="d-flex align-items-center">
+                                            <h4 class="mb-0 fs-32 rawline-bold">{{listBenefiario.interaction}}</h4>
+                                            <mat-icon  *ngIf="listBenefiario.interaction >= 5" class="color-success ms-2">arrow_upward</mat-icon>
+                                            <mat-icon  *ngIf="listBenefiario.interaction < 5" class="color-danger ms-2">south</mat-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="rawline-medium fs-16 text-secondary-custom">Profissionais</p>
+                            <div class="col-12 row">
+                                <div class="col-md-4 col-sm-6 mt-3">
+                                    <div class="d-flex flex-column">
+                                        <p class="text-muted-custom rawline-medium fs-14">Programa</p>
+                                        <div class="d-flex align-items-center">
+                                            <h4 class="mb-0 fs-32 rawline-bold">{{listProfessional.program}}</h4>
+                                            <mat-icon  *ngIf="listProfessional.program >= 5" class="color-success ms-2">arrow_upward</mat-icon>
+                                            <mat-icon  *ngIf="listProfessional.program < 5" class="color-danger ms-2">south</mat-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 mt-3">
+                                    <div class="d-flex flex-column">
+                                        <p class="text-muted-custom rawline-medium fs-14">Plataforma</p>
+                                        <div class="d-flex align-items-center">
+                                            <h4 class="mb-0 fs-32 rawline-bold">{{listProfessional.platform}}</h4>
+                                            <mat-icon  *ngIf="listProfessional.platform >= 5" class="color-success ms-2">arrow_upward</mat-icon>
+                                            <mat-icon  *ngIf="listProfessional.platform < 5" class="color-danger ms-2">south</mat-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 mt-3">
+                                    <div class="d-flex flex-column">
+                                        <p class="text-muted-custom rawline-medium fs-14">Interação</p>
+                                        <div class="d-flex align-items-center">
+                                            <h4 class="mb-0 fs-32 rawline-bold">{{listProfessional.interaction}}</h4>
+                                            <mat-icon  *ngIf="listProfessional.interaction >= 5" class="color-success ms-2">arrow_upward</mat-icon>
+                                            <mat-icon  *ngIf="listProfessional.interaction < 5" class="color-danger ms-2">south</mat-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+</section>

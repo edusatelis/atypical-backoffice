@@ -1,0 +1,37 @@
+<section class="container-fluid p-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h3 class="rawline-bold fs-26 mb-0">Editar função</h3>
+        <mat-icon class="cursor-pointer" (click)="close()">close</mat-icon>
+    </div>
+    <form [formGroup]="form" class="mt-4">
+        <div class="d-flex flex-column">
+            <mat-form-field appearance="outline">
+                <mat-label>Nome da função</mat-label>
+                <input matInput formControlName="name" placeholder="Digite" type="text">
+            </mat-form-field>
+            <p class="fs-16 rawline-bold mt-3">Permissões</p>
+            <div class="row">
+                <div class="col-md-4 d-flex flex-column">
+                    <mat-checkbox color="primary" formControlName="manageUsers">Gerir usuários</mat-checkbox>
+                    <mat-checkbox color="primary" formControlName="requests">Solicitações</mat-checkbox>
+                    <mat-checkbox color="primary" formControlName="manageWorks">Gerir Obras</mat-checkbox>
+                </div>
+                <div class="col-md-4 d-flex flex-column">
+                    <mat-checkbox color="primary" formControlName="manageProfessionals">Gerir profissionais</mat-checkbox>
+                    <mat-checkbox color="primary" formControlName="manageDemands">Gerir demandas</mat-checkbox>
+                    <mat-checkbox color="primary" formControlName="viewBackOffice">Visualizar BackOffice</mat-checkbox>
+                </div>
+                <div class="col-md-4">
+                    <mat-checkbox color="primary" formControlName="checkForInconsistencies">Verificar inconsistências</mat-checkbox>
+                </div>
+            </div>
+            <div class="d-flex align-items-center mt-4">
+                <button mat-button class="w-100 fs-16 rawline-bold color-primary" (click)="close()">Cancelar</button>
+                <button mat-raised-button
+                    class="w-100 btn-primary-custom text-white fs-16 rawline-bold" (click)="submit()">Confirmar</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+<app-loading-data *ngIf="loading" [message]="message"></app-loading-data>

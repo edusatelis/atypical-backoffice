@@ -1,0 +1,149 @@
+<section class="container-fluid">
+    <div class="content-header-page">
+        <h4 class="text-secondary-custom fw-bold my-4 axiforma-semibold fs-26">Controle de Demandas</h4>
+    </div>
+    <div class="row">
+        <div class="col-lg-9 mt-4" [formGroup]="Search">
+            <mat-form-field appearance="outline" class="w-100">
+                <input matInput placeholder="Pesquise" formControlName="busca">
+                <button mat-icon-button matSuffix (click)="search()">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="col-lg-3 mt-4 d-flex align-items-center">
+            <button class="btn btn-outline-dark me-3" style="height: 56px;" (click)="openFilters()">
+                <mat-icon>filter_alt</mat-icon>
+            </button>
+            <button class="btn btn-dark w-100" style="height: 56px;" (click)="openMap()" [disabled]="!response.length">
+                <span *ngIf="!mapOn" class="rawline-bold">
+                    Mapa
+                </span>
+                <span *ngIf="mapOn" class="rawline-bold">
+                    Lista
+                </span>
+            </button>
+        </div>
+        <div class="col-12" *ngIf="filtersOn">
+            <form [formGroup]="formSearch">
+                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                    <mat-form-field appearance="outline" class="mt-4">
+                        <mat-label>Fase</mat-label>
+                        <mat-select formControlName="phase">
+                            <mat-option value="" [disabled]="true">Selecione</mat-option>
+                            <mat-option value="Cadastro de demanda">Cadastro de demanda</mat-option>
+                            <mat-option value="Vistoria">Vistoria</mat-option>
+                            <mat-option value="Projeto de melhoria">Projeto de melhoria</mat-option>
+                            <mat-option value="Obra em andamento">Obra em andamento</mat-option>
+                            <mat-option value="Concluído">Concluído</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="mt-4">
+                        <mat-label>Status</mat-label>
+                        <mat-select formControlName="status">
+                            <mat-option value="">Selecione</mat-option>
+                            <mat-option value="RASCUNHO">Rascunho</mat-option>
+                            <mat-option value="CADASTRADO_VISTORIA">Vistoria solicitada</mat-option>
+                            <mat-option value="ESPERANDO_MELHORIA">Aguardando intervenções</mat-option>
+                            <mat-option value="EM_ANALISE">Aprovação pendente analise</mat-option>
+                            <mat-option value="ESPERANDO_OBRA">Cadastrar obra</mat-option>
+                            <mat-option value="CONCLUIR_OBRAS">Fotos em analise</mat-option>
+                            <mat-option value="CONCLUIR_OBRAS">Refazer fotos</mat-option>
+                            <mat-option value="CONCLUIR_OBRAS">Obra em andamento</mat-option>
+                            <mat-option value="CONCLUIDO">Obra concluida</mat-option>
+                            <mat-option value="CONCLUIDO">Fotos analisadas - Obra concluida</mat-option>
+                            <mat-option value="ESPERANDO_VALIDACAO">Aprovação pendente</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="mt-4">
+                        <mat-label>UF</mat-label>
+                        <mat-select formControlName="status">
+                            <mat-option value="" [disabled]="true">Selecione</mat-option>
+                            <mat-option value="AC">Acre</mat-option>
+                            <mat-option value="AL">Alagoas</mat-option>
+                            <mat-option value="AP">Amapá</mat-option>
+                            <mat-option value="AM">Amazonas</mat-option>
+                            <mat-option value="BA">Bahia</mat-option>
+                            <mat-option value="CE">Ceará</mat-option>
+                            <mat-option value="DF">Distrito Federal</mat-option>
+                            <mat-option value="ES">Espírito Santo</mat-option>
+                            <mat-option value="GO">Goiás</mat-option>
+                            <mat-option value="MA">Maranhão</mat-option>
+                            <mat-option value="MT">Mato Grosso</mat-option>
+                            <mat-option value="MS">Mato Grosso do Sul</mat-option>
+                            <mat-option value="MG">Minas Gerais</mat-option>
+                            <mat-option value="PA">Pará</mat-option>
+                            <mat-option value="PB">Paraíba</mat-option>
+                            <mat-option value="PR">Paraná</mat-option>
+                            <mat-option value="PE">Pernambuco</mat-option>
+                            <mat-option value="PI">Piauí</mat-option>
+                            <mat-option value="RJ">Rio de Janeiro</mat-option>
+                            <mat-option value="RN">Rio Grande do Norte</mat-option>
+                            <mat-option value="RS">Rio Grande do Sul</mat-option>
+                            <mat-option value="RO">Rondônia</mat-option>
+                            <mat-option value="RR">Roraima</mat-option>
+                            <mat-option value="SC">Santa Catarina</mat-option>
+                            <mat-option value="SP">São Paulo</mat-option>
+                            <mat-option value="SE">Sergipe</mat-option>
+                            <mat-option value="TO">Tocantins</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="d-flex align-items-center justify-content-end mt-4">
+                    <button mat-button class="fs-16 rawline-bold color-primary me-3"
+                        (click)="openFilters()">Cancelar</button>
+                    <button mat-stroked-button class="fs-16 rawline-bold" (click)="submit()"
+                        style="min-width: 193px;">Buscar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="!mapOn">
+        <div class="col-12 mt-4">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="rawline-bold fs-14">Beneficiário</th>
+                            <th scope="col" class="rawline-bold fs-14">Profissional</th>
+                            <th scope="col" class="rawline-bold fs-14">Fase</th>
+                            <th scope="col" class="rawline-bold fs-14">Status</th>
+                            <th scope="col" class="rawline-bold fs-14">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of response | paginate: { itemsPerPage: 10, currentPage: page }">
+                            <td class="rawline-medium fs-14">{{item?.beneficiary?.name}}</td>
+                            <td class="rawline-medium fs-14">{{item?.company?.name}}</td>
+                            <td class="rawline-medium fs-14">{{getPhase(item.status)}}</td>
+                            <td class="rawline-medium fs-14">
+                                <div [ngClass]="getStatusClass(item.status)">
+                                    {{ getStatus(item) }}
+                                </div>
+                            </td>
+                            <td>
+                                <mat-icon class="color-gray cursor-pointer"
+                                    (click)="openInfo(item)">person_search</mat-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="!response.length" class="d-flex align-items-center justify-content-center mt-5">
+                <img src="../../../assets/imgs/not-response.png" alt="">
+            </div>
+            <div class="d-flex justify-content-end mt-3">
+                <span class="rawline-medium fs-14">Total de <span class="rawline-bold">{{response.length}}
+                        registros</span></span>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <pagination-controls (pageChange)="page = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-3" *ngIf="mapOn">
+        <app-map-demand [response]="response"></app-map-demand>
+    </div>
+</section>
+<app-loading-data *ngIf="loading" [message]="message"></app-loading-data>

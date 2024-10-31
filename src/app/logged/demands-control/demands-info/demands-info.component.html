@@ -1,0 +1,170 @@
+<section class="container-fluid p-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h3 class="rawline-bold fs-26 mb-0" style="color: #4C4C4C;">Informações da Demanda</h3>
+        <mat-icon class="cursor-pointer" (click)="close()">close</mat-icon>
+    </div>
+
+    <div class="row mt-4">
+        <label for=""><strong style="color: #008480;" class="fs-14"> Agente Promotor</strong></label>
+        <span class="fs-16">{{response.company?.name || 'Não Informado'}}</span>
+    </div>
+    <div class="row mt-2 d-flex">
+        <div class="col-md-6">
+            <label for=""> <strong class="fs-14">Fase</strong></label>
+            <br>
+            <span class="fs-16">{{getPhase(response.status)}}</span>
+        </div>
+        <div class="col-md-6">
+            <label for=""><strong class="fs-14">Status</strong></label>
+            <br>
+            <span class="fs-16"[ngClass]="getStatusClass(response.status)" >{{getStatus(response.status)}}</span>
+        </div>
+    </div>
+    <hr>
+    <div class="justify-content-center" *ngIf="response.status == 'RASCUNHO'">
+        <h1 class="align-items-center">Não há Informações</h1>
+    </div>
+
+    <div *ngIf="response.status != 'RASCUNHO'">
+        <div  *ngFor="let room of response.workRequest.room let i = index; let last = last; let first = first" class="row mt-4 p-2">
+            <h3 class="fw-bold">{{room.name || ''}}</h3>
+    
+    
+            <h3 class="">Tipo de Intervenção</h3>
+    
+            
+            <span *ngIf="room.roomSolutions.length == 0" class=""><li>Sem intervenções</li></span>
+            <div *ngFor="let solution of room.roomSolutions">
+                <li>{{ getInterventionDetails(solution.solution).description}}</li>
+            </div>
+            <div class="row mt-4 mb-4">
+                <label for="" class="fs-10">
+                    <img src="../../../../assets/svg/image.svg" width="20" height="20" alt="">
+                    &nbsp;
+                    <strong>Fotos e/ou vídeos antes da obra </strong>
+                </label>
+                <br>
+            
+                <span *ngIf="!room.roomSolutions.picturesAndVideos">Sem imagem anexada</span>
+                <div *ngFor="let photo of room.roomSolutions.picturesAndVideos">
+                    <div class="col">
+                        <img src="{{photo}}" alt="" width="55px" height="55px">
+                    </div>
+                </div>
+                
+        
+            </div>
+    
+    
+            <hr *ngIf="!last" class="line-horizontal">
+            <hr *ngIf="last" style="color: green;">
+        </div>
+        <div class="d-flex justify-content-end">
+          <p *ngIf="count > 0" class="fw-500 font-size-11 color-secondary9 mb-1">{{count}} intervenções</p>
+        </div>
+    </div>
+
+<!-- 
+    <div class="row mt-4" *ngIf="response.status == 'RASCUNHO'">
+        <label for=""><strong>Informações Familiares </strong></label>
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <label for="" class="fs-10">
+                    <img src="../../../../assets/svg/group.svg" width="20" height="20" alt="">
+                    &nbsp;
+                    <strong>Pessoas que moram na casa </strong>
+                </label>
+                <br>
+                <span>{{response.workRequest}} pessoas</span>
+            </div>
+            <div class="col-md-4">
+                <label for="" class="fs-10">
+                    <img src="../../../../assets/svg/person.svg" width="20" height="20" alt="">
+                    &nbsp;
+                    <strong>Responsável pela moradia </strong>
+                </label>
+                <br>
+                <span>Mãe</span>
+            </div>
+            <div class="col-md-4">
+                <label for="" class="fs-10">
+                    <img src="../../../../assets/svg/local_atm.svg" width="20" height="20" alt="">
+                    &nbsp;
+                    <strong>Beneficios recebidos pela familia </strong>
+                </label>
+                <br>
+                <span>bolsa familia</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="row mt-4" *ngIf="response.status == 'RASCUNHO'">
+        <label for=""><strong>Informações da residência </strong></label>
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <label for="" class="fs-10">
+                    <img src="../../../../assets/svg/home_work.svg" width="20" height="20" alt="">
+                    &nbsp;
+                    <strong>Tipo de residência</strong>
+                </label>
+                <br>
+                <span>5 pessoas</span>
+            </div>
+            <div class="col-md-4">
+                <label for="" class="fs-10">
+                    <img src="../../../../assets/svg/home_broke.svg" width="20" height="20" alt="">
+                    &nbsp;
+                    <strong>Problemas da moradia </strong>
+                </label>
+                <br>
+                <span>Mãe</span>
+            </div>
+            <div class="col-md-4">
+                <label for="" class="fs-10">
+                    <img src="../../../../assets/svg/person-shelter.svg" width="20" height="20" alt="">
+                    &nbsp;
+                    <strong>Cômodos que tem na residência </strong>
+                </label>
+                <br>
+                <span>bolsa familia</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row mt-4" *ngIf="response.status == 'RASCUNHO'">
+        <label for="" class="fs-10">
+            <img src="../../../../assets/svg/image.svg" width="20" height="20" alt="">
+            &nbsp;
+            <strong>Fotos e/ou vídeos que apontem o problema da moradia </strong>
+        </label>
+        <br>
+        <div class="col">
+            <img src="" alt="" width="55px" height="55px">
+        </div>
+        <div class="col">
+            <img src="" alt="" width="55px" height="55px">
+        </div>
+        <div class="col">
+            <img src="" alt="" width="55px" height="55px">
+        </div>
+        <div class="col">
+            <img src="" alt="" width="55px" height="55px">
+        </div>
+        <div class="col">
+            <img src="" alt="" width="55px" height="55px">
+        </div>
+        <div class="col">
+            <img src="" alt="" width="55px" height="55px">
+        </div>
+        <div class="col">
+            <img src="" alt="" width="55px" height="55px">
+        </div>
+        
+
+    </div> -->
+
+    <div class="d-flex align-items-center mt-4">
+        <button mat-button class="w-100 fs-16 rawline-bold color-primary" (click)="close()" >Cancelar</button>
+    </div>
+</section>

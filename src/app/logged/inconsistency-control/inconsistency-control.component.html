@@ -1,0 +1,83 @@
+<section class="container-fluid">
+    <div class="content-header-page">
+        <h4 class="text-secondary-custom fw-bold my-4 axiforma-semibold fs-26">Controle de Inconsistência</h4>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 mt-4 d-flex flex-nowrap">
+            <mat-form-field appearance="outline" class="w-100">
+                <input matInput placeholder="Pesquise">
+                <button mat-icon-button matSuffix (click)="search()">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+            <button class="btn btn-outline-dark ms-3" style="height: 56px;" (click)="openFilters()">
+                <mat-icon>filter_alt</mat-icon>
+            </button>
+        </div>
+        <div class="col-12" *ngIf="filtersOn">
+            <form [formGroup]="formSearch">
+                <div class="d-flex align-items-center flex-wrap">
+                    <mat-form-field appearance="outline" class="mt-4">
+                        <mat-label>Fase</mat-label>
+                        <mat-select formControlName="phase">
+                            <mat-option value="" [disabled]="true">Selecione</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="mt-4 ms-3">
+                        <mat-label>Tipo</mat-label>
+                        <mat-select formControlName="type">
+                            <mat-option value="" [disabled]="true">Selecione</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="d-flex align-items-center justify-content-end mt-4">
+                    <button mat-button class="fs-16 rawline-bold color-primary me-3"
+                        (click)="openFilters()">Cancelar</button>
+                    <button mat-stroked-button class="fs-16 rawline-bold" (click)="submit()"
+                        style="min-width: 193px;">Buscar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mt-4">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="rawline-bold fs-14">Beneficiário</th>
+                            <th scope="col" class="rawline-bold fs-14">Profissional</th>
+                            <th scope="col" class="rawline-bold fs-14">Fase</th>
+                            <th scope="col" class="rawline-bold fs-14">Tipo</th>
+                            <th scope="col" class="rawline-bold fs-14">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of response | paginate: { itemsPerPage: 10, currentPage: page }">
+                            <td class="rawline-medium fs-14">{{item.name}}</td>
+                            <td class="rawline-medium fs-14">{{item.professional.profession}} {{item.professional.name}}
+                            </td>
+                            <td class="rawline-medium fs-14">{{item.phase}}</td>
+                            <td class="rawline-medium fs-14">{{item.type}}</td>
+                            <td>
+                                <mat-icon class="me-3 color-blue cursor-pointer"
+                                    (click)="openDetails(item)">search</mat-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="submited" class="d-flex align-items-center justify-content-center mt-5">
+                <img src="../../../assets/imgs/not-response.png" alt="">
+            </div>
+            <div class="d-flex justify-content-end mt-3">
+                <span class="rawline-medium fs-14">Total de <span class="rawline-bold">{{response.length}}
+                        registros</span></span>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <pagination-controls (pageChange)="page = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</section>

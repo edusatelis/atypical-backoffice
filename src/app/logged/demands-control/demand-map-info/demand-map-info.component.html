@@ -1,0 +1,23 @@
+<section class="container-fluid p-3">
+    <div class="d-flex justify-content-between align-items-center">
+        <h4 class="text-secondary-custom fw-bold axiforma-semibold mb-0">Informações da demanda</h4>
+        <mat-icon (click)="back()" class="cursor-pointer">close</mat-icon>
+    </div>
+    <div class="d-flex flex-column">
+        <label class="rawline-bold fs-14">Beneficiário</label>
+        <label class="rawline-medium fs-14">{{response?.beneficiary?.name}}</label>
+
+        <label class="rawline-bold fs-14 mt-3">Profissional</label>
+        <label class="rawline-medium fs-14">{{response?.company?.name}}</label>
+
+        <label class="rawline-bold fs-14 mt-3">Fase</label>
+        <label class="rawline-medium fs-14">{{getPhase(response.status)}}</label>
+
+        <label class="rawline-bold fs-14 mt-3">Fase</label>
+        <label class="rawline-medium fs-14">
+            <div [ngClass]="getStatusClass(response.status)">
+                {{ getStatus(response) }}
+            </div>
+        </label>
+    </div>
+</section>

@@ -1,0 +1,35 @@
+<mat-drawer-container class="example-container" hasBackdrop="false">
+    <mat-drawer mode="push" class="px-3" [opened]="changeSide" (openedChange)="change($event)">
+        <div class="d-flex align-items-center justify-content-center my-4">
+            <img src="../../assets/imgs/laco.png" width="160px" alt="">
+        </div>
+        <hr>
+
+        <div class="content-item-sidebar mt-3" routerLink="/logged/dashboard" [ngClass]="{ 'side-item-active': dashboardArray.indexOf(currentHref) > -1 }" (click)="closeSide()">
+            <mat-icon>home</mat-icon>
+            <span class="ms-3">Dashboard</span>
+        </div>
+        <div class="content-item-sidebar mt-3" routerLink="/logged/user-control" [ngClass]="{ 'side-item-active': userControlArray.indexOf(currentHref) > -1 }" (click)="closeSide()">
+            <mat-icon>manage_accounts</mat-icon>
+            <span class="ms-3">Controle de acesso</span>
+        </div>
+        <div  class="content-item-sidebar mt-3" routerLink="/logged/promoting-agent" [ngClass]="{ 'side-item-active': promotingAgentArray.indexOf(currentHref) > -1 }" (click)="closeSide()">
+            <mat-icon>maps_home_work</mat-icon>
+            <span class="ms-3">Clinicas</span>
+        </div>
+        <div  class="content-item-sidebar mt-3" routerLink="/logged/registered-professionals" [ngClass]="{ 'side-item-active': registeredProfessionalsArray.indexOf(currentHref) > -1 }" (click)="closeSide()">
+            <mat-icon>group</mat-icon>
+            <span class="ms-3">Profissionais</span>
+        </div>
+        <div class="content-item-sidebar mt-3" routerLink="/logged/search-control" [ngClass]="{ 'side-item-active': searchControlArray.indexOf(currentHref) > -1 }" (click)="closeSide()">
+            <mat-icon>star</mat-icon>
+            <span class="ms-3">Feedback</span>
+        </div>
+
+    </mat-drawer>
+    <mat-drawer-content>
+        <app-navbar></app-navbar>
+        <div class="margin-header"></div>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

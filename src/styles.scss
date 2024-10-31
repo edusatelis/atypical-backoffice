@@ -1,0 +1,534 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue";
+}
+
+@import 'bootstrap/scss/bootstrap';
+
+$success: #168821;
+$warning: #F2C037;
+$danger: #E52207;
+$primary: #008480;
+$dark: #333333;
+$muted: #CCCCCC;
+$text-color-primary: #0B0B18;
+$text-color-secondary: #4C4C4C;
+$gray-dark: #ADADAD;
+$text-gray-dark: #222021;
+$blue-custom: #155BCB;
+
+@import '@angular/material/theming';
+
+$primary-color: $primary;
+$accent-color: #ff4081;
+
+$custom-primary: mat-palette($mat-teal, 500);
+$custom-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$custom-typography: mat-typography-config($font-family: 'Rawline Medium'
+    );
+
+// Crie o tema com a tipografia personalizada
+$custom-theme: mat-light-theme((color: (primary: $custom-primary, accent: $custom-accent),
+            typography: $custom-typography ));
+
+@include angular-material-theme($custom-theme);
+
+@font-face {
+    font-family: 'Rawline Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rawline Regular'), url('./assets/fonts/rawline/rawline-400.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Rawline Thin';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rawline Thin'), url('./assets/fonts/rawline/rawline-100.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Rawline ExtraLight';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rawline ExtraLight'), url('./assets/fonts/rawline/rawline-200.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Rawline Light';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rawline Light'), url('./assets/fonts/rawline/rawline-300.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Rawline Medium';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rawline Medium'), url('./assets/fonts/rawline/rawline-500.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Rawline SemiBold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rawline SemiBold'), url('./assets/fonts/rawline/rawline-600.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Rawline Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rawline Bold'), url('./assets/fonts/rawline/rawline-700.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Rawline ExtraBold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rawline ExtraBold'), url('./assets/fonts/rawline/rawline-800.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Rawline Black';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rawline Black'), url('./assets/fonts/rawline/rawline-900.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Axiforma Thin';
+    font-style: normal;
+    font-weight: 100;
+    src: url('./assets/fonts/axiforma/Axiforma-Thin.woff2') format('woff2'),
+        url('./assets/fonts/axiforma/Axiforma-Thin.woff') format('woff'),
+        url('./assets/fonts/axiforma/Axiforma-Thin.eot');
+}
+
+@font-face {
+    font-family: 'Axiforma Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./assets/fonts/axiforma/Axiforma-Regular.woff2') format('woff2'),
+        url('./assets/fonts/axiforma/Axiforma-Regular.woff') format('woff'),
+        url('./assets/fonts/axiforma/Axiforma-Regular.eot');
+}
+
+@font-face {
+    font-family: 'Axiforma Medium';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./assets/fonts/axiforma/Axiforma-Medium.woff2') format('woff2'),
+        url('./assets/fonts/axiforma/Axiforma-Medium.woff') format('woff'),
+}
+
+@font-face {
+    font-family: 'Axiforma SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    src: url('./assets/fonts/axiforma/Axiforma-SemiBold.woff2') format('woff2'),
+        url('./assets/fonts/axiforma/Axiforma-SemiBold.woff') format('woff'),
+        url('./assets/fonts/axiforma/Axiforma-SemiBold.eot');
+}
+
+.rawline-thin {
+    font-family: 'Rawline Thin' !important;
+    font-weight: 100;
+}
+
+.rawline-extralight {
+    font-family: 'Rawline ExtraLight' !important;
+    font-weight: 200;
+}
+
+.rawline-light {
+    font-family: 'Rawline Light' !important;
+    font-weight: 300;
+}
+
+.rawline-regular {
+    font-family: 'Rawline Regular' !important;
+    font-weight: 400;
+}
+
+.rawline-medium {
+    font-family: 'Rawline Medium' !important;
+    font-weight: 500;
+}
+
+.rawline-semibold {
+    font-family: 'Rawline SemiBold' !important;
+    font-weight: 600;
+}
+
+.rawline-bold {
+    font-family: 'Rawline Bold' !important;
+    font-weight: 700;
+}
+
+.rawline-extrabold {
+    font-family: 'Rawline ExtraBold' !important;
+    font-weight: 800;
+}
+
+.rawline-black {
+    font-family: 'Rawline Black' !important;
+    font-weight: 900;
+}
+
+.axiforma-thin {
+    font-family: 'Axiforma Thin' !important;
+    font-weight: 100;
+}
+
+.axiforma-regular {
+    font-family: 'Axiforma Regular' !important;
+    font-weight: 400;
+}
+
+.axiforma-medium {
+    font-family: 'Axiforma Medium' !important;
+    font-weight: 500;
+}
+
+.axiforma-semibold {
+    font-family: 'Axiforma SemiBold' !important;
+}
+
+.fs-26 {
+    font-size: 26px !important;
+}
+
+.fs-32 {
+    font-size: 32px !important;
+}
+
+.fs-21 {
+    font-size: 21px !important;
+}
+
+.fs-12 {
+    font-size: 12px !important;
+}
+
+.fs-16 {
+    font-size: 16px !important;
+}
+
+.fs-14 {
+    font-size: 14px !important;
+}
+
+.fs-10 {
+    font-size: 10px !important;
+}
+
+.ngx-pagination {
+    padding-left: 0px !important;
+}
+
+.ngx-pagination .current,
+.btn-info {
+    background: $primary !important;
+    border: transparent !important;
+}
+
+.ngx-pagination .current:hover {
+    background: $primary !important;
+    border: transparent !important;
+}
+
+
+.link-custom {
+    color: $primary !important;
+    text-decoration: underline !important;
+    cursor: pointer !important;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.btn-back-custom-content {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.danger-snackbar {
+    --mdc-snackbar-container-color: #F54336;
+    --mat-mdc-snack-bar-button-color: white;
+}
+
+.success-snackbar {
+    --mdc-snackbar-container-color: #4CAF50;
+    --mat-mdc-snack-bar-button-color: white;
+}
+
+.warning-snackbar {
+    --mdc-snackbar-container-color: #FFC107;
+    --mat-mdc-snack-bar-button-color: white;
+}
+
+.btn-primary-custom {
+    background-color: #008480 !important;
+}
+
+.example-container {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+}
+
+mat-drawer {
+    height: 100%;
+}
+
+mat-drawer-content {
+    flex-grow: 1;
+    height: 100vh;
+    overflow: auto;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+    box-shadow: none !important;
+}
+
+.content-item-sidebar {
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    cursor: pointer !important;
+
+    span {
+        font-family: 'Rawline Regular' !important;
+        font-size: 14px !important;
+    }
+}
+
+.side-item-active {
+    color: #008480 !important;
+    cursor: pointer !important;
+
+    span {
+        font-family: 'Rawline Bold' !important;
+    }
+
+    p {
+        font-family: 'Rawline Bold' !important;
+    }
+}
+
+.profile-rounded-custom {
+    border: 1px solid $muted !important;
+    height: 32px !important;
+    width: 32px !important;
+    color: $primary !important;
+    border-radius: 50% !important;
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+.text-primary-custom {
+    color: $text-color-primary;
+}
+
+.text-secondary-custom {
+    color: $text-color-secondary;
+}
+
+.text-muted-custom {
+    color: $gray-dark;
+}
+
+.color-primary {
+    color: $primary !important;
+}
+
+.color-success {
+    color: $success;
+}
+
+.color-danger {
+    color: $danger !important;
+}
+
+.text-gray-dark {
+    color: $text-gray-dark
+}
+
+.color-blue {
+    color: $blue-custom;
+}
+
+.color-gray {
+    color: $dark;
+}
+
+.content-header-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $gray-dark;
+}
+
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent !important;
+}
+
+.no-bottom-border .mat-form-field-underline {
+    display: none;
+}
+
+.margin-header {
+    margin-top: 80px !important;
+}
+
+.profile-picture-content {
+    min-height: 90px;
+    max-height: 90px;
+    max-width: 90px;
+    min-width: 90px;
+    border-radius: 50%;
+}
+
+.message-picture-content {
+    min-height: 57px;
+    max-height: 57px;
+    max-width: 57px;
+    min-width: 57px;
+    border-radius: 50%;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+    border-color: $primary !important;
+}
+
+.status-pending {
+    border-radius: 35px;
+    color: #E59E15;
+    opacity: 0.8;
+    background: #FFF5C2;
+    display: inline-flex;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.status-requested {
+    border-radius: 35px;
+    color: #155BCB;
+    opacity: 0.8;
+    background: #D4E5FF;
+    display: inline-flex;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.status-refused {
+    border-radius: 35px;
+    color: #E52207;
+    opacity: 0.8;
+    background: linear-gradient(0deg, #FDE0DB 0%, #FDE0DB 100%), #FFF;
+    display: inline-flex;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.status-new {
+    border-radius: 35px;
+    color: #168821;
+    opacity: 0.8;
+    background: #E5F4EE;
+    display: inline-flex;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.chat-content-custom {
+    height: 321px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.message-wrapper {
+    display: flex;
+    margin: 5px 0;
+}
+
+.message-wrapper.user {
+    justify-content: flex-end;
+}
+
+.message-wrapper.other {
+    justify-content: flex-start;
+}
+
+.message {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 10px;
+    word-break: break-word;
+}
+
+.user-message {
+    background-color: #cce5ff;
+}
+
+.other-message {
+    background-color: #e2e2e2;
+}
+
+.container-spinner {
+    position: absolute !important;
+    z-index: 999 !important;
+    top: 0px !important;
+    left: 0px !important;
+    right: 0px !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    background-color: white !important;
+}
+
+.custom-icon {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }

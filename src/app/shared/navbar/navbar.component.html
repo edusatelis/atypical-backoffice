@@ -1,0 +1,20 @@
+<mat-toolbar style="height: 80px;background-color: #FFFFFF;border-bottom: 1px solid #EDEDED;">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="openSide()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span class="example-spacer"></span>
+    <div class="d-flex align-items-center">
+        <div class="btn-group">
+            <button type="button" class="btn profile-rounded-custom me-3" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <span class="color-primary">{{user?.name[0]}}</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><button class="dropdown-item d-flex align-items-center" type="button" (click)="logout()"><mat-icon
+                            class="me-3 text-danger">logout</mat-icon>
+                        Sair</button></li>
+            </ul>
+        </div>
+        <span class="text-primary-custom fs-10 axiforma-medium">{{user?.name}}</span>
+    </div>
+</mat-toolbar>

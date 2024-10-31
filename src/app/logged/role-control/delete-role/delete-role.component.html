@@ -1,0 +1,16 @@
+<section class="container-fluid p-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h3 class="rawline-bold fs-26 mb-0">Deletar função</h3>
+        <mat-icon class="cursor-pointer" (click)="close()">close</mat-icon>
+    </div>
+
+    <div class="d-flex flex-column align-items-center">
+        <h4 class="mt-5 text-center rawline-medium">Tem certeza que deseja deletar a função <b>{{response.name}}</b></h4>
+        <p class="rawline-light text-center">Depois de confirmar essa ação não poderá ser desfeita</p>
+    </div>
+    <div class="d-flex align-items-center mt-4">
+        <button mat-button class="w-100 fs-16 rawline-bold color-primary" (click)="close()">Cancelar</button>
+        <button mat-raised-button
+            class="w-100 btn-primary-custom text-white fs-16 rawline-bold ms-3" (click)="submit()">Deletar</button>
+    </div>
+</section>

@@ -1,0 +1,68 @@
+<section class="container-fluid">
+    <div class="content-header-page">
+        <h4 class="text-secondary-custom fw-bold my-4 axiforma-semibold fs-26">Controle de funções</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-9 mt-4">
+            <mat-form-field appearance="outline" class="w-100">
+                <input matInput placeholder="Pesquise">
+                <button mat-icon-button matSuffix (click)="search()">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3 mt-4">
+            <button class="btn btn-dark w-100" style="height: 56px;" (click)="openRegisterRole()" [disabled]="!showActions">
+                <span class="rawline-bold">
+                    Nova função
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mt-4">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="rawline-bold fs-14">Função</th>
+                            <th scope="col" class="rawline-bold fs-14">Permissões</th>
+                            <th scope="col" class="rawline-bold fs-14">Número de usuários</th>
+                            <th scope="col" class="rawline-bold fs-14">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of response | paginate: { itemsPerPage: 10, currentPage: page }">
+                            <td>{{item?.role}}</td>
+                            <td>
+                                <div class="d-flex flex-column">
+                                    <span>
+                                        {{item?.description}}
+                                    </span>
+                                </div>
+                            </td>
+                            <td>-</td>
+                            <td>
+                                <div *ngIf="showActions">
+                                    <mat-icon class="me-3 color-gray cursor-pointer"
+                                        (click)="openEdit(item)">edit</mat-icon>
+                                    <mat-icon class="me-3 color-danger cursor-pointer"
+                                        (click)="openDelete(item)">delete</mat-icon>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-end mt-3">
+                <span class="rawline-medium fs-14">Total de <span class="rawline-bold">{{response.length}} registros</span></span>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <pagination-controls (pageChange)="page = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-loading-data *ngIf="loading" [message]="message"></app-loading-data>

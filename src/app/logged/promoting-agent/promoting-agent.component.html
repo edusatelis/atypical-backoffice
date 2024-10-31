@@ -1,0 +1,70 @@
+<section class="container-fluid">
+    <div class="content-header-page">
+        <h4 class="text-secondary-custom fw-bold my-4 axiforma-semibold fs-26">Agente Promotor</h4>
+    </div>
+    <div class="row">
+        <div class="col-lg-9 mt-4" [formGroup]="Search">
+            <mat-form-field appearance="outline" class="w-100">
+                <input matInput placeholder="Pesquise" formControlName="busca">
+                <button mat-icon-button matSuffix (click)="search()">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="col-lg-3 mt-4 d-flex align-items-center">
+            <button class="btn btn-dark w-100" style="height: 56px;" (click)="openRegisterAgent()">
+                <span class="rawline-bold">
+                    Novo agente promotor
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mt-4">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="rawline-bold fs-14">Agente Promotor</th>
+                            <th scope="col" class="rawline-bold fs-14">CNPJ</th>
+                            <th scope="col" class="rawline-bold fs-14">Administrador</th>
+                            <th scope="col" class="rawline-bold fs-14">Data do Cadastrado</th>
+                            <th scope="col" class="rawline-bold fs-14">Status</th>
+                            <th scope="col" class="rawline-bold fs-14">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr  *ngFor="let item of response | paginate: { itemsPerPage: 10, currentPage: page }">
+                            <td class="rawline-medium fs-14">{{item.name}}</td>
+                            <td class="rawline-medium fs-14">{{getCnpj(item.cnpj)}}</td>
+                            <td class="rawline-medium fs-14">{{item.userAdmin.name}}</td>
+                            <td class="rawline-medium fs-14">{{getDate(item.createdAt)}}</td>
+                            <td class="rawline-medium fs-14">
+                                <div [ngClass]="getStatusClass(item.status)">
+                                    {{ getStatus(item.status) }}
+                                </div>
+                            </td>
+                            <td >
+                                <mat-icon class="me-3 color-blue cursor-pointer" (click)="openAgentDetails(item.id)">person_search</mat-icon>
+                                <mat-icon class="color-red cursor-pointer" (click)="deleteAgent(item.id)">delete</mat-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="submited" class="d-flex align-items-center justify-content-center mt-5">
+                <img src="../../../assets/imgs/not-response.png" alt="">
+            </div>
+            <div class="d-flex justify-content-end mt-3">
+                <span class="rawline-medium fs-14">Total de <span class="rawline-bold">{{response.length}}
+                        registros</span></span>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <pagination-controls (pageChange)="page = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-loading-data *ngIf="loading" [message]="message"></app-loading-data>

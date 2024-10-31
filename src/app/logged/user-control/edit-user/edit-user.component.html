@@ -1,0 +1,123 @@
+<section class="container-fluid p-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h3 class="rawline-bold fs-26 mb-0">Editar usuário</h3>
+        <mat-icon class="cursor-pointer" (click)="close()">close</mat-icon>
+    </div>
+    <form [formGroup]="form" class="mt-4">
+        <div class="d-flex flex-column">
+            <mat-form-field appearance="outline" class="w-100 mt-2">
+                <mat-label>Tipo de Usuario</mat-label>
+                <mat-select  formControlName="type" placeholder="Selecione">
+                    <mat-option value="admin">Administrador</mat-option>
+                    <mat-option value="subscriber">Assinante</mat-option>
+                    <mat-option value="professional">Profissional</mat-option>
+                </mat-select>
+            </mat-form-field>
+        <div class="row">
+            <div class="col-md-6">
+
+                <mat-form-field appearance="outline" class="mt-2 w-100">
+                    <mat-label>Nome</mat-label>
+                    <input matInput formControlName="name" placeholder="Digite" type="text">
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+
+                <mat-form-field appearance="outline" class="mt-2 w-100">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput formControlName="email" placeholder="Digite" type="email">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+                <mat-form-field appearance="outline" class="mt-2 w-100">
+                    <mat-label>CPF</mat-label>
+                    <input matInput formControlName="cpf" placeholder="Digite" type="text">
+                </mat-form-field>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="outline" class="w-100 mt-2">
+                    <mat-label>Status</mat-label>
+                    <mat-select  formControlName="status" placeholder="Selecione">
+                        <mat-option value="active">Ativo</mat-option>
+                        <mat-option value="inactive">Inativo</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field  appearance="outline" class="mt-2 w-100">
+                    <mat-label>Data Nascimento</mat-label>
+                    <input matInput formControlName="birthDate" placeholder="Digite" type="date">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <hr  *ngIf="form.controls['type'].value == 'professional'" class="mt-4 mb-2"/>
+
+        <mat-form-field  *ngIf="form.controls['type'].value == 'professional'" appearance="outline" class="mt-2">
+            <mat-label>CRM</mat-label>
+            <input matInput formControlName="cpf" placeholder="Digite" type="text">
+        </mat-form-field>
+
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field  *ngIf="form.controls['type'].value == 'professional'" appearance="outline" class="mt-2 w-100">
+                    <mat-label>Rua</mat-label>
+                    <input matInput formControlName="street" placeholder="Digite" type="text">
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field  *ngIf="form.controls['type'].value == 'professional'" appearance="outline" class="mt-2 w-100">
+                    <mat-label>Complemento</mat-label>
+                    <input matInput formControlName="complement" placeholder="Digite" type="text">
+                </mat-form-field>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field  *ngIf="form.controls['type'].value == 'professional'" appearance="outline" class="mt-2 w-100">
+                    <mat-label>Cidade</mat-label>
+                    <input matInput formControlName="city" placeholder="Digite" type="text">
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field  *ngIf="form.controls['type'].value == 'professional'" appearance="outline" class="mt-2 w-100">
+                    <mat-label>Estado</mat-label>
+                    <input matInput formControlName="state" placeholder="Digite" type="text">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <mat-form-field  *ngIf="form.controls['type'].value == 'professional'" appearance="outline" class="mt-2 w-100">
+            <mat-label>Bairro</mat-label>
+            <input matInput formControlName="street" placeholder="Digite" type="text">
+        </mat-form-field>
+
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field  *ngIf="form.controls['type'].value == 'professional'" appearance="outline" class="mt-2 w-100">
+                    <mat-label>Numero</mat-label>
+                    <input matInput formControlName="number" placeholder="Digite" type="number">
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field  *ngIf="form.controls['type'].value == 'professional'" appearance="outline" class="mt-2 w-100">
+                    <mat-label>Cep</mat-label>
+                    <input matInput formControlName="zipcode" placeholder="Digite" type="number">
+                </mat-form-field>
+
+            </div>
+
+        </div>
+            <div class="d-flex align-items-center mt-4">
+                <button mat-button class="w-100 fs-16 rawline-bold color-primary" (click)="close()">Cancelar</button>
+                <button mat-raised-button
+                    class="w-100 btn-primary-custom text-white fs-16 rawline-bold" (click)="submit()">Editar</button>
+            </div>
+        </div>
+    </form>
+</section>
+<app-loading-data *ngIf="loading" [message]="message"></app-loading-data>
