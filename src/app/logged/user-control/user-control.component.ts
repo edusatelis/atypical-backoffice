@@ -18,14 +18,17 @@ export class UserControlComponent {
   page: number = 0;
   response: any = [];
 
+  submited: boolean = false;
   
   
   
   loading: boolean = false;
+  filtersOn: boolean = false;
+
   
   message: string = '';
   
-  Search: FormGroup;
+  formSearch: FormGroup;
   responseOriginal: any = [];
 
 
@@ -37,7 +40,9 @@ export class UserControlComponent {
     private formBuilder: FormBuilder,
 
   ) { 
-    this.Search = this.formBuilder.group({
+    this.formSearch = this.formBuilder.group({
+      tipo: [''],
+      status: [''],
       busca: ['']
     })
   }
@@ -59,7 +64,6 @@ export class UserControlComponent {
       next: data => {
         this.response = data;
         this.responseOriginal = data;
-        console.log(data)
       },
       error: error => {
         console.error(error);
@@ -72,7 +76,7 @@ export class UserControlComponent {
 
   search() {
 
-    const searchTerm = this.Search.controls['busca'].value
+    const searchTerm = this.formSearch.controls['busca'].value
     if (searchTerm) {
 
         this.response = this.response.filter((item: any) =>  item.name.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -147,6 +151,10 @@ export class UserControlComponent {
     })
   }
 
+  openFilters() {
+    this.filtersOn = !this.filtersOn
+  }
+
   getStatus(status: string) {
     switch (status) {
       case 'active':
@@ -157,5 +165,29 @@ export class UserControlComponent {
         return ''
     }
   }
+
+  submit() {
+    this.response = [...this.responseOriginal];
+    this.submited = false;
+
+    const status = this.formSearch.controls['status'].value;
+    const tipo = this.formSearch.controls['tipo'].value;
+
+    if (status) {
+        this.response = this.response.filter((item: any) => 
+            item.status.toLowerCase().includes(status.toLowerCase())
+        );
+    }
+
+    if (tipo) {
+        this.response = this.response.filter((item: any) => 
+            item.type.toLowerCase().includes(tipo.toLowerCase())
+        );
+    }
+
+    if (this.response.length === 0) {
+        this.submited = true;
+    }
+}
 
 }

@@ -18,8 +18,8 @@
             <span class="ms-3">Clinicas</span>
         </div>
         <div  class="content-item-sidebar mt-3" routerLink="/logged/registered-professionals" [ngClass]="{ 'side-item-active': registeredProfessionalsArray.indexOf(currentHref) > -1 }" (click)="closeSide()">
-            <mat-icon>group</mat-icon>
-            <span class="ms-3">Profissionais</span>
+            <mat-icon>calendar_month</mat-icon>
+            <span class="ms-3">Agenda</span>
         </div>
         <div class="content-item-sidebar mt-3" routerLink="/logged/search-control" [ngClass]="{ 'side-item-active': searchControlArray.indexOf(currentHref) > -1 }" (click)="closeSide()">
             <mat-icon>star</mat-icon>
